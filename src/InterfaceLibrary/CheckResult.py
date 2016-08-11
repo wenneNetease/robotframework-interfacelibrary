@@ -20,14 +20,15 @@ class CheckResult():
 
     def check_code(self, response, expectcode):
         """Check HTTP response code.
+        `response` application/json type
 
         Examples usage:
         | Check | {"data":"null","code":"200","msg":"添加成功"}| 200 |
         """
         try:
-            dic = eval(response)
+            dic = json.loads(response)
         except Exception, e:
-            print 'Http response can not transfer to json,pelease check data format'
+            print 'Http response can not transfer to dict,pelease check data format'
             raise e
         else:
             code = dic['code']
